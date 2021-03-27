@@ -1,17 +1,19 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
+import pandas as pd
 
 def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+    print(f'Hi, {name}')
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
-    ggg
+    a = [1, 7, 2]
+    calories = {"day1": 420, "day2": 380, "day3": 390}
+    data = {
+        "calories": [420, 380, 390],
+        "duration": [50, 40, 45]
+    }
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    df = pd.DataFrame(data)
+    print(df.loc[[0,1]])
+
+
+
