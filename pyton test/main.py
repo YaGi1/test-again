@@ -1,19 +1,38 @@
-import pandas as pd
-
-def print_hi(name):
-    print(f'Hi, {name}')
-
+import requests
+import json
 
 if __name__ == '__main__':
-    a = [1, 7, 2]
-    calories = {"day1": 420, "day2": 380, "day3": 390}
-    data = {
-        "calories": [420, 380, 390],
-        "duration": [50, 40, 45]
+    parameters = {
+        "lat": 20.71,
+        "lon": -74
     }
+    response = requests.get("http://api.open-notify.org/iss-pass.json", params=parameters)
+    # print(response.status_code)
+    print(response.json())
 
-    df = pd.DataFrame(data)
-    print(df.loc[[0,1]])
 
+    def jprint(obj):
+        # create a formatted string of the Python JSON object
+        text = json.dumps(obj, sort_keys=True, indent=4)
+        print(text)
+
+    pass_times = response.json()['response']
+    jprint(pass_times)
+    # jprint(response.json())
+    risetimes = []
+
+    for d in pass_times:
+        time = d['risetime']
+        risetimes.append(time)
+
+    print(risetimes)
+
+    times = []
+    from datetime import datetime
+
+    for rt in risetimes:
+        time = datetime.fromtimestamp(rt)
+        times.append(time)
+        print(time)
 
 
